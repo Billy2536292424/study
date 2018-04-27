@@ -1,0 +1,24 @@
+#include<unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+extern int errno;
+int main(void)
+{
+	printf("before fork\n");
+	pid_t pid = fork();
+	if(pid == -1)
+	{
+		printf("%s\n",strerror(errno);
+		exit(1);
+	}
+	if(pid>0)
+	{
+	printf("I'm parent\n");
+	}
+	else
+	{
+	printf("I'm child\n");
+	}
+	printf("finish\n");
+}
