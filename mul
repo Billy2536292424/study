@@ -1,0 +1,12 @@
+mul.h
+#ifndef __MUL_H__
+
+#define __MUL_H__
+int MUL(int a, int b);
+#endif//__MUL_H__
+mul.c
+#include"mul.h"
+int mul(int a, int b)
+{
+	return a*b;
+}
