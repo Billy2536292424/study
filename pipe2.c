@@ -11,7 +11,6 @@
 perror(m);\
 exit(EXIT_FAILURE);\
 }while(0)
-#if 0
 int main(int argc, char*argv[])
 {
 	int pipefd[2];
