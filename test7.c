@@ -35,3 +35,27 @@ int main(void)
     return 0;
 
 }
+#endif
+#if 0
+int main(void)
+{
+	printf("get pid %d\n", getpid());
+	while(1);
+	return 0;
+}
+#endif
+#if 0
+int main(void)
+{
+	int count = 1;
+	alarm(1);
+	for(;1;count++)
+{
+	printf("count is:%d\n",count);
+}
+	return 0;
+}
+#endif
+
+
+
