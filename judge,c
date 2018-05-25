@@ -1,0 +1,44 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+int judge(int num,int i)
+{	
+	
+
+	for(i=2;i<=sqrt(num);i++)
+	{
+	if(num%i==0)
+	{
+	return 1;
+	
+	break;
+	}
+	else 
+	{
+	return 0;
+	}
+	}
+	return 0;
+}
+
+int main()
+{
+	
+	int num = 0;
+	int i = 0;
+	int fale = 0;
+	scanf_s("%d\n",&num);
+    fale =judge(num,i);
+	if(fale==1)
+	{
+		printf("不是素数\n");
+	}
+	else
+	{
+		printf("是素数\n");
+	}
+
+
+
+	return 0;
+}
