@@ -17,3 +17,15 @@
  	return ret;
  	
  }
+int main()
+ {
+ 	
+ 
+ 	char a[]="aaaaaaaaaaaa";
+ 	char *p = "hello world.";
+ // 	
+ // 	my_strcpy(a,"hello world.");
+ 	printf("%s\n",my_strcpy(a,p));
+	
+	return 0;
+ }
