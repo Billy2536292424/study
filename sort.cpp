@@ -524,3 +524,132 @@ int main()
 	cout << endl;
 	return 0;
 }
+#include<vector>
+#include<iostream>
+using namespace std;
+//void BaseSort(int arr[], int size)
+//{
+//	int count = 1;//位数
+//	int elem = 1;
+//	int radix = 10;
+//	int *temp = new int[size];
+//	for (int i = 0; i < size; i++)//求数组中最大数的位数
+//	{
+//		while (arr[i]>radix)
+//		{
+//			count++;
+//			radix *= 10;
+//		}
+//
+//	}
+//	for (int i = 0; i < count; i++)
+//	{
+//		int count[10] = { 0 };
+//		for (int j = 0; j < size; j++)
+//		{
+//			count[arr[j] / elem % 10]++;
+//		}
+//		int position[10] = { 0 };
+//		for (int j = 1; j < 10; j++)
+//		{
+//			position[j] = position[j - 1] + count[j - 1];
+//
+//		}
+//		for (int j = 0; j < size; j++)
+//		{
+//			int ret = arr[j] / elem % 10;
+//			temp[position[ret]++] = arr[j];
+//		}
+//		memcpy(arr, temp, sizeof(arr[0])*size);
+//		elem *= 10;
+//	}
+//	delete[] temp;
+//}
+//int main()
+//{
+//	int arr[] = {2,3 , 5,2,6,1,0,8};
+//	int size = sizeof(arr) / sizeof(arr[0]);
+//	BaseSort(arr,size);
+//	cout << "基数排序" << endl;
+//	for (int i = 0; i < size; i++)
+//	{
+//		cout << arr[i] << " ";
+//	}
+//	cout << endl;
+//	return 0;
+//}
+#include<iostream>
+using	namespace std;
+const int bn = 5;//桶的·个数
+int c[bn];//计数数组
+int MapToBucket(int x)//映射函数
+{
+	return x / 10;
+}
+void CountSort(int arr[], int size)//找边界
+{
+	for (int i = 0; i < size; i++)
+	{
+		c[i] = 0;
+	}
+	for (int i = 0; i < size; i++)
+	{
+		c[MapToBucket(arr[i])]++;
+	}
+	for (int i = 1; i < size; i++)
+	{
+		c[i] = c[i] + c[i - 1];
+	}
+	int *B = new int[size];
+	for (int i = size - 1; i >= 0; i--)
+	{
+		int b = MapToBucket(arr[i]);
+		B[--c[b]] = arr[i];
+	}
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = B[i];
+	}
+	delete[] B;
+}
+void InsertSort(int arr[], int left, int right)
+{
+	for (int i = left + 1; i <= right; i++)
+	{
+		int get = arr[i];
+		int j = i - 1;
+		while (j >= left&&arr[j] > get)
+		{
+			arr[j + 1] = arr[j];
+			j--;
+
+		}
+		arr[j + 1] = get;
+	}
+}
+void BucketSort(int arr[], int size)
+{
+	CountSort(arr, size);
+	for (int i = 0; i < bn; i++)
+	{
+		int left = c[i];
+		int right = (i == bn - 1 ? size - 1 : c[i + 1] - 1);
+		if (left < right)
+		{
+			InsertSort(arr, left, right);
+		}
+	}
+}
+int main()
+{
+	int arr[] = { 2, 3, 5, 0, 8, 9, 4 };
+	int size = sizeof(arr) / sizeof(arr[0]);
+	BucketSort(arr, size);
+	cout << "桶排序" << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+	return 0;
+}
